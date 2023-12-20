@@ -1,12 +1,35 @@
+/* SearchInput.module.css */
+
 .searchInput {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
   }
   
-  .searchInput input {
-    margin-right: 5px;
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+    transition: border-color 0.3s;
   }
   
-  .searchInput button {
-    cursor: pointer;
+  input:focus {
+    border-color: dodgerblue;
+  }
+  
+
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .searchInput {
+    animation: fadeIn 0.5s ease-out; /* Apply fade-in animation */
   }
   

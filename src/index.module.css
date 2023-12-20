@@ -1,3 +1,11 @@
+
+:root {
+  --primary-color: #776B5D; /* Example primary color (blue) */
+  --secondary-color: #B0A695; /* Example secondary color (green) */
+  --accent-color: #EBE3D5; 
+  --background-color: #F3EEEA; 
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
 }
 
 
@@ -18,4 +27,18 @@ body {
   min-height: 100vh;
   position: relative;
 
+}
+
+button {
+  padding: 8px 16px;
+  background-color:var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
 }

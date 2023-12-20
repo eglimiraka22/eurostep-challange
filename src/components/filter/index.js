@@ -70,27 +70,27 @@ const Filter = () => {
         placeholder='Enter character name...'
         onSearch={handleSearch}
       />
-      <div>
+      <div className={styles.selectContainer}>
         <SelectFilter
           value={speciesFilter}
           onChange={(value) => dispatch(setSpeciesFilter(value))}
           options={speciesOptions}
-          placeholder='All Species'
-          label='Species'
+          placeholder='All species'
+          label='species'
         />
         <SelectFilter
           value={homeworldFilter}
           onChange={(value) => dispatch(setHomeworldFilter(value))}
           options={homeworldOptions}
           placeholder='All Homeworlds'
-          label='Homeworld'
+          label='Homeworlds'
         />
         <SelectFilter
           value={filmFilter}
           onChange={(value) => dispatch(setFilmFilter(value))}
           options={filmOptions}
           placeholder='All Films'
-          label='Film'
+          label='Films'
           film={true}
         />
       </div>

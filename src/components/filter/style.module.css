@@ -3,7 +3,17 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--accent-color);
   }
   
   /* Add more styles as needed */
-  
+  .selectContainer {
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    padding: 5px;
+    gap: 1rem;
+  }
