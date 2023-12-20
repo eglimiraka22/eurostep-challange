@@ -1,13 +1,15 @@
 // slices/peopleSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getPeople } from '../../services/api';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getPeople } from "../../services/api";
 
-
-export const fetchPeople = createAsyncThunk('people/fetchPeople', async (page) => {
+export const fetchPeople = createAsyncThunk(
+  "people/fetchPeople",
+  async (page) => {
     return getPeople(page);
-  });
+  },
+);
 const peopleSlice = createSlice({
-  name: 'people',
+  name: "people",
   initialState: {
     data: [],
     loading: false,
@@ -43,7 +45,6 @@ const peopleSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.currentPage = action.meta.arg; // Update currentPage here
-
       })
       .addCase(fetchPeople.rejected, (state, action) => {
         state.loading = false;
