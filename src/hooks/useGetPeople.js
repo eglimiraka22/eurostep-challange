@@ -1,28 +1,24 @@
 // hooks/useGetPeople.js
-import { useState, useEffect } from 'react';
-import { getPeople } from '../services/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPeople, selectPeople } from '../store/slices/peopleSlice';
 
-const useGetPeople = () => {
-  const [people, setPeople] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const useGetPeople = (initialPage = 1) => {
+  const dispatch = useDispatch();
+  const { data: people, loading, error, totalPages, currentPage } =
+    useSelector(selectPeople);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPeople();
-        setPeople(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
+  const nextPage = () => {
+      dispatch(fetchPeople(currentPage + 1));
+  };
 
-    fetchData();
-  }, []);
+  const prevPage = () => {
+    if (currentPage > 1) {
+      dispatch(fetchPeople(currentPage - 1));
+    }
+  };
+  console.log(currentPage)
 
-  return { people, loading, error };
+  return { people, totalPages, currentPage, loading, error, nextPage, prevPage };
 };
 
 export default useGetPeople;
