@@ -17,8 +17,8 @@ import {
   setFilmFilter,
   clearFilters,
 } from "../../store/slices/filtersSlice";
-import SearchInput from "../ui/SearchInput";
-import SelectFilter from "../ui/SelectFilter";
+import SearchInput from "../UI/SearchInput";
+import SelectFilter from "../UI/SelectFilter";
 import styles from "./style.module.css"; // Import CSS module
 
 const Filter = () => {
@@ -31,7 +31,6 @@ const Filter = () => {
   const { speciesFilter, homeworldFilter, filmFilter } = useSelector(
     (state) => state.filters,
   );
-  console.log("Filters", speciesFilter);
 
   const handleSearch = () => {
     dispatch(setCurrentQuery({ searchQuery })); // Dispatch setCurrentQuery action here
@@ -76,7 +75,7 @@ const Filter = () => {
           onChange={(value) => dispatch(setSpeciesFilter(value))}
           options={speciesOptions}
           placeholder='All species'
-          label='species'
+          label='Species'
         />
         <SelectFilter
           value={homeworldFilter}

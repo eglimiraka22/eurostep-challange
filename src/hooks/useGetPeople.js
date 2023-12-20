@@ -21,7 +21,6 @@ const useGetPeople = () => {
       dispatch(fetchPeople({ page: currentPage - 1, query:currentQuery,speciesFilter, filmFilter,homeworldFilter  }));
     }
   };
-console.log(totalCount)
 
  useEffect(() => {
     // Fetch initial data when the component mounts

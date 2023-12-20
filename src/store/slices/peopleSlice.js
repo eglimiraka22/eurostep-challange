@@ -7,7 +7,6 @@ export const fetchPeople = createAsyncThunk(
   async ({ page, query, speciesFilter, homeworldFilter, filmFilter }) => {
     try {
 
-        console.log("Fetching people", speciesFilter, homeworldFilter, filmFilter)
       // The asynchronous logic (e.g., API call) is performed here
       const response = await getPeople(page, query);
       const filteredResults = filterResults(response.results, speciesFilter, homeworldFilter, filmFilter);

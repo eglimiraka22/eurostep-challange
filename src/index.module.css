@@ -1,37 +1,34 @@
-
 :root {
-  --primary-color: #776B5D; /* Example primary color (blue) */
-  --secondary-color: #B0A695; /* Example secondary color (green) */
-  --accent-color: #EBE3D5; 
-  --background-color: #F3EEEA; 
+  --primary-color: #776b5d; /* Example primary color (blue) */
+  --secondary-color: #b0a695; /* Example secondary color (green) */
+  --accent-color: #ebe3d5;
+  --background-color: #f3eeea;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
 }
 
-
-
-
-
-.mainContainer{
-
+.mainContainer {
   width: 100%;
   height: 100%;
   min-height: 100vh;
   position: relative;
-
+}
+.mainContainer h1 {
+  width: fit-content;
+  margin: 1rem auto;
 }
 
 button {
   padding: 8px 16px;
-  background-color:var(--primary-color);
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -40,5 +37,17 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: peru;
+}
+button:disabled {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+}
+
+.paginationContainer {
+  width: fit-content;
+  margin: 3rem auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

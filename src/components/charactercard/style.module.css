@@ -1,0 +1,48 @@
+.characterCard {
+  width: 100%;
+  padding: 5px;
+  max-width: 300px;
+  height: fit-content;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  border-radius: 5px;
+  outline: 2px solid var(--secondary-color);
+  position: relative;
+  cursor: pointer;
+}
+.characterCard::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.2;
+  z-index: 0;
+}
+.characterCard:hover:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 0;
+}
+.characterData {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  z-index: 1;
+}
+.characterName {
+  font-weight: bold !important;
+  font-size: 20px;
+}
