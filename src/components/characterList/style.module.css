@@ -9,6 +9,7 @@
   align-content: center;
   margin: 1rem auto;
   visibility: hidden;
+  z-index: 1;
 }
 
 .charactersContainer > * {
@@ -29,7 +30,7 @@
 }
 @media (width<=768px) {
   .charactersContainer {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   }
 }
 

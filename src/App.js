@@ -35,7 +35,7 @@ const App = () => {
       {loading ? (
         <LoaderSpinner />
       ) : error ? (
-        <p>Error: {error}</p>
+        <p>Error: {error} ,Try Again</p>
       ) : (
         <>
           <CharacterList characters={people} />

@@ -1,18 +1,49 @@
 .modalOverlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
+  animation: fadeIn 0.3s ease-out; /* Add fadeIn animation */
+  overflow: hidden;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modalContent {
   background: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
   padding: 20px;
   border-radius: 8px;
+  animation: fadeUp 0.5s ease-in-out; /* Add fadeUp animation */
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(250px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.characterDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 1px;
+  justify-content: flex-start;
+  align-items: start;
 }

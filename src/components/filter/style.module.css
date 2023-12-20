@@ -19,3 +19,18 @@
   padding: 5px;
   gap: 1rem;
 }
+
+@media (width<=850px) {
+  .searchFilter {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (width<=768px) {
+  .selectContainer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}

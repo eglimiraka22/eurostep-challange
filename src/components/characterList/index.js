@@ -17,18 +17,20 @@ const CharacterList = ({ characters, onClick }) => {
     setSelectedCharacter(null);
   };
   return (
-    <div className={styles.charactersContainer}>
-      {characters.map((character) => (
-        <CharacterCard
-          key={character.name}
-          character={character}
-          onClick={() => handleOpenModal(character)}
-        />
-      ))}
+    <>
+      <div className={styles.charactersContainer}>
+        {characters.map((character) => (
+          <CharacterCard
+            key={character.name}
+            character={character}
+            onClick={() => handleOpenModal(character)}
+          />
+        ))}
+      </div>
       {selectedCharacter && openModal && (
         <Modal character={selectedCharacter} onClose={closeModal} />
       )}
-    </div>
+    </>
   );
 };
 

@@ -50,3 +50,18 @@ option {
 .selectOption:hover {
   background-color: #f0f0f0;
 }
+
+@media (width<=768px) {
+  .select {
+    width: 200px;
+    max-width: 100%;
+  }
+  .selectContainer {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    gap: 5px;
+    width: 250px;
+    justify-content: space-between;
+  }
+}
