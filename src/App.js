@@ -4,19 +4,14 @@ import { useDispatch } from 'react-redux';
 import useGetPeople from './hooks/useGetPeople';
 // import CharacterModal from './components/CharacterModal';
 import { fetchPeople } from './store/slices/peopleSlice';
-
 import CharacterList from './components/characterList';
 import LoaderSpinner from './components/loader';
-
+import styles from "./index.module.css"
+import SearchFilter from './components/searchFilter';
 const App = () => {
-  const dispatch = useDispatch();
   const { people, totalPages, currentPage, loading, error, nextPage, prevPage } =
     useGetPeople();
-
-  useEffect(() => {
-    dispatch(fetchPeople(currentPage));
-  }, [dispatch, currentPage]);
-
+    
   const handleNextPage = () => {
     nextPage();
   };
@@ -26,7 +21,8 @@ const App = () => {
   };
 
   return (
-    <div className={styles.mainPage} >
+    <div className={styles.mainContainer} >
+<SearchFilter />
       <h1>Star Wars Characters</h1>
       {/* <SearchFilter /> */}
       {loading ? (
