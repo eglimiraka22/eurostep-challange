@@ -7,11 +7,11 @@ import { fetchPeople } from './store/slices/peopleSlice';
 import CharacterList from './components/characterList';
 import LoaderSpinner from './components/loader';
 import styles from "./index.module.css"
-import SearchFilter from './components/searchFilter';
+import SearchFilter from './components/filter';
 const App = () => {
   const { people, totalPages, currentPage, loading, error, nextPage, prevPage } =
     useGetPeople();
-    
+    console.log(people)
   const handleNextPage = () => {
     nextPage();
   };

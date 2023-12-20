@@ -1,0 +1,12 @@
+.searchInput {
+    margin-bottom: 10px;
+  }
+  
+  .searchInput input {
+    margin-right: 5px;
+  }
+  
+  .searchInput button {
+    cursor: pointer;
+  }
+  
