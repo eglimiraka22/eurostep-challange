@@ -6,7 +6,7 @@ const CharacterList = ({ characters, onClick }) => {
   return (
     <div>
       {characters.map((character) => (
-        <CharacterCard key={character.name} character={character} onClick={() => onClick(character)} />
+        <CharacterCard key={character.name} character={character}  />
       ))}
     </div>
   );
