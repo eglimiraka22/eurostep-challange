@@ -11,6 +11,8 @@ import {
   setSpeciesFilter,
   setHomeworldFilter,
   setFilmFilter,
+  setErrorFilters,
+  setLoadingFilters,
 } from "../../store/slices/filtersSlice";
 import SelectFilter from "../UI/SelectFilter";
 import styles from "./style.module.css"; // Import CSS module
@@ -24,12 +26,14 @@ const Filter = () => {
   const [speciesOptions, setSpeciesOptions] = useState([]);
   const [homeworldOptions, setHomeworldOptions] = useState([]);
   const [filmOptions, setFilmOptions] = useState([]);
-  const [speciesError, setSpeciesError] = useState(null);
-  const [homeworldError, setHomeworldError] = useState(null);
-  const [filmError, setFilmError] = useState(null);
-  const { speciesFilter, homeworldFilter, filmFilter } = useSelector(
-    (state) => state.filters,
-  );
+
+  const {
+    speciesFilter,
+    homeworldFilter,
+    filmFilter,
+    errorFilters,
+    loadingFilters,
+  } = useSelector((state) => state.filters);
 
   const { token } = useSelector(selectAuth);
   const [openLoginMoal, setOpenLoginMoal] = useState(false);
@@ -60,41 +64,65 @@ const Filter = () => {
 
   useEffect(() => {
     // Fetch species options
-    getSpeciesOptions()
-      .then((options) => {
-        setSpeciesOptions(options.results);
-        setSpeciesError(null);
-      })
-      .catch((error) => {
-        setSpeciesError("Error fetching species options");
-        console.error("Error fetching species options:", error);
-      });
+    const getAllFilters = () => {
+      try {
+        dispatch(setLoadingFilters(true));
 
-    // Fetch homeworld options
-    getHomeworldOptions()
-      .then((options) => {
-        setHomeworldOptions(options.results);
-        setHomeworldError(null);
-      })
-      .catch((error) => {
-        setHomeworldError("Error fetching homeworld options");
-        console.error("Error fetching homeworld options:", error);
-      });
+        getSpeciesOptions()
+          .then((options) => {
+            setSpeciesOptions(options.results);
+          })
+          .catch((error) => {
+            dispatch(setErrorFilters("Error fetching species options"));
+          });
 
-    // Fetch film options
-    getFilmOptions()
-      .then((options) => {
-        setFilmOptions(options.results);
-        setFilmError(null);
-      })
-      .catch((error) => {
-        setFilmError("Error fetching film options");
-        console.error("Error fetching film options:", error);
-      });
-  }, []); // Run only once on component mount
+        // Fetch homeworld options
+        getHomeworldOptions()
+          .then((options) => {
+            setHomeworldOptions(options.results);
+          })
+          .catch((error) => {
+            dispatch(setErrorFilters("Error fetching homeworld options"));
+          });
 
-  if (speciesError || filmError || homeworldError) {
+        // Fetch film options
+        getFilmOptions()
+          .then((options) => {
+            setFilmOptions(options.results);
+          })
+          .catch((error) => {
+            dispatch(setErrorFilters("Error fetching Films options"));
+          });
+      } catch (error) {
+        dispatch(setErrorFilters("Something went wrong"));
+      } finally {
+        dispatch(setLoadingFilters(false));
+      }
+    };
+    getAllFilters();
+  }, [dispatch]); // Run only once on component mount
+  if (errorFilters) {
     return <p>There was a problem with Filters Api</p>;
+  }
+  console.log(loadingFilters);
+  if (loadingFilters) {
+    return (
+      <div className={styles.searchFilter}>
+        <SearchFilter
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder='Enter character name...'
+          onSearch={handleSearch}
+        />
+        <div className={styles.selectContainer}>
+          Loading Filters for Star Wars...
+        </div>
+        <button onClick={handleLoginButtonClick}>
+          {token ? "Logout" : "Login"}
+        </button>{" "}
+        {openLoginMoal && <Login onClick={() => setOpenLoginMoal(false)} />}
+      </div>
+    );
   }
   return (
     <div className={styles.searchFilter}>

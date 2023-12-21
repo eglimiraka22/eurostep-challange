@@ -7,7 +7,7 @@ const api = axios.create({
 
 export const getPeople = async (page = 1, searchQuery) => {
   try {
-    const params = { page, search: searchQuery }; // Include searchQuery in params
+    const params = { search: searchQuery, page }; // Include searchQuery in params
     const response = await api.get("/people/", { params });
     return response.data;
   } catch (error) {

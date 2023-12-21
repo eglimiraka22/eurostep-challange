@@ -12,15 +12,24 @@ const SelectFilter = ({
   return (
     <div className={styles.searchSelect}>
       <div className={styles.selectContainer}>
-      <label>{label}:</label>
-      <select className={styles.select} value={value} onChange={(e) => onChange(e.target.value)}>
-        <option value=''>{`All ${label}`}</option>
-        {options.map((option) => (
-          <option key={option.url} value={option.url} className={styles.selectOption}>
-            {film ? option.title : option.name}
-          </option>
-        ))}
-      </select>
+        <label>{label}:</label>
+        <select
+          className={styles.select}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        >
+          <option value=''>{`All ${label}`}</option>
+          {options &&
+            options.map((option) => (
+              <option
+                key={option.url}
+                value={option.url}
+                className={styles.selectOption}
+              >
+                {film ? option.title : option.name}
+              </option>
+            ))}
+        </select>
       </div>
     </div>
   );

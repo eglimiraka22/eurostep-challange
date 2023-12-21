@@ -7,6 +7,8 @@ const filtersSlice = createSlice({
     speciesFilter: "",
     homeworldFilter: "",
     filmFilter: "",
+    errorFilters: null,
+    loadingFilters: false,
   },
   reducers: {
     setSpeciesFilter: (state, action) => {
@@ -23,6 +25,14 @@ const filtersSlice = createSlice({
       state.homeworldFilter = "";
       state.filmFilter = "";
     },
+
+    setLoadingFilters: (state, action) => {
+      console.log("Loading state", action.payload);
+      state.loadingFilters = action.payload;
+    },
+    setErrorFilters: (state, action) => {
+      state.loadingFilters = action.payload;
+    },
   },
 });
 
@@ -31,6 +41,8 @@ export const {
   setHomeworldFilter,
   setFilmFilter,
   clearFilters,
+  setErrorFilters,
+  setLoadingFilters,
 } = filtersSlice.actions;
 
 export const selectFilters = (state) => state.filters;
