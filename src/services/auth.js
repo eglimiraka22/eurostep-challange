@@ -3,7 +3,8 @@ const fakeAuthService = {
   tokenKey: "token",
 
   createFakeToken: (payload) => {
-    // In a real app, you would use a library like jsonwebtoken to create a valid JWT
+    // In a real app, we would use a library like jsonwebtoken to create a valid JWT or
+    // get a token from the server api
     // For simplicity, this example uses a simple base64 encoding
     const header = { alg: "HS256", typ: "JWT" };
     const encodedHeader = btoa(JSON.stringify(header));

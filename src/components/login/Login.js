@@ -5,7 +5,7 @@ import { loginAsync, selectAuth } from "../../store/slices/authSlice";
 import styles from "./style.module.css";
 const Login = ({ onClick }) => {
   const dispatch = useDispatch();
-  const { error, authenticated } = useSelector(selectAuth);
+  const { error } = useSelector(selectAuth);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
