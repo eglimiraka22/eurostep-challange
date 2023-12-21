@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import CharacterCard from "../charactercard/index";
 import styles from "./style.module.css";
-import Modal from "../UI/Modal";
+import Modal from "../ui/Modal";
 const CharacterList = ({ characters, onClick }) => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [openModal, setOpenModal] = useState(false);

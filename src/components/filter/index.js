@@ -14,11 +14,11 @@ import {
   setErrorFilters,
   setLoadingFilters,
 } from "../../store/slices/filtersSlice";
-import SelectFilter from "../UI/SelectFilter";
+import SelectFilter from "../ui/SelectFilter";
 import styles from "./style.module.css"; // Import CSS module
 import { logout, selectAuth } from "../../store/slices/authSlice";
 import Login from "../login/Login";
-import SearchFilter from "../UI/SearchFilter";
+import SearchFilter from "../ui/SearchFilter";
 
 const Filter = () => {
   const dispatch = useDispatch();
