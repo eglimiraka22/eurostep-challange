@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./SearchInput.module.css"; // Import CSS module
+import styles from "./SearchFilter.module.css"; // Import CSS module
 
-const SearchInput = ({ value, onChange, placeholder, onSearch }) => {
+const SearchFilter = ({ value, onChange, placeholder, onSearch }) => {
   return (
-    <div className={styles.searchInput}>
+    <div className={styles.SearchFilter}>
       <input
         type='text'
         value={value}
@@ -15,4 +15,4 @@ const SearchInput = ({ value, onChange, placeholder, onSearch }) => {
   );
 };
 
-export default SearchInput;
+export default SearchFilter;

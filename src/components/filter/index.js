@@ -12,11 +12,11 @@ import {
   setHomeworldFilter,
   setFilmFilter,
 } from "../../store/slices/filtersSlice";
-import SearchInput from "../UI/SearchInput";
 import SelectFilter from "../UI/SelectFilter";
 import styles from "./style.module.css"; // Import CSS module
 import { logout, selectAuth } from "../../store/slices/authSlice";
 import Login from "../login/Login";
+import SearchFilter from "../UI/SearchFilter";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const Filter = () => {
   }
   return (
     <div className={styles.searchFilter}>
-      <SearchInput
+      <SearchFilter
         value={searchQuery}
         onChange={setSearchQuery}
         placeholder='Enter character name...'
