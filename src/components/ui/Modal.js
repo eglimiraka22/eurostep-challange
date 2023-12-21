@@ -18,8 +18,6 @@ const Modal = ({ character, onClose }) => {
 
   const { homeworld, loading, error } = useHomeworld(character.homeworld);
 
-  console.log(homeworld);
-
   let homeworldErrorContent;
 
   if (error) {

@@ -1,37 +1,54 @@
-// components/CharacterList.js
-import React, { useState } from "react";
-import CharacterCard from "../charactercard/index";
+import React from "react";
+import CharacterList from "./CharacterList";
+import useGetPeople from "../../hooks/useGetPeople";
 import styles from "./style.module.css";
-import Modal from "../UI/Modal";
-const CharacterList = ({ characters, onClick }) => {
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
-  const handleOpenModal = (character) => {
-    setOpenModal(true);
-    setSelectedCharacter(character);
+import LoaderSpinner from "../loader";
+const CharactersContainer = () => {
+  const {
+    people,
+    totalPages,
+    currentPage,
+    loading,
+    error,
+    nextPage,
+    prevPage,
+  } = useGetPeople();
+  const handleNextPage = () => {
+    nextPage();
   };
 
-  const closeModal = () => {
-    setOpenModal(false);
-
-    setSelectedCharacter(null);
+  const handlePrevPage = () => {
+    prevPage();
   };
-  return (
-    <>
-      <div className={styles.charactersContainer}>
-        {characters.map((character) => (
-          <CharacterCard
-            key={character.name}
-            character={character}
-            onClick={() => handleOpenModal(character)}
-          />
-        ))}
+  if (loading) {
+    return (
+      <div className={styles.mainContainerList}>
+        <LoaderSpinner />
       </div>
-      {selectedCharacter && openModal && (
-        <Modal character={selectedCharacter} onClose={closeModal} />
-      )}
-    </>
+    );
+  }
+  if (error) {
+    <div className={styles.mainContainerList}>
+      <p>Error: {error} ,Try Again</p>
+    </div>;
+  }
+
+  return (
+    <div className={styles.mainContainerList}>
+      <CharacterList characters={people} />
+      <div className={styles.paginationContainer}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default CharacterList;
+export default CharactersContainer;

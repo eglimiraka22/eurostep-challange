@@ -43,11 +43,3 @@ button:disabled {
   background-color: var(--secondary-color);
   cursor: not-allowed;
 }
-
-.paginationContainer {
-  width: fit-content;
-  margin: 3rem auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}

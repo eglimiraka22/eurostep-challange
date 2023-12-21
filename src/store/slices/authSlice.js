@@ -5,6 +5,7 @@ import fakeAuthService from "../../services/auth";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
+    authenticated: false,
     token: localStorage.getItem("token") || null,
     error: null,
   },
@@ -13,14 +14,15 @@ const authSlice = createSlice({
       state.error = null;
     },
     loginSuccess: (state, action) => {
+      state.authenticated = true;
       state.token = action.payload;
-      localStorage.setItem("token", action.payload);
     },
     loginFailure: (state, action) => {
       state.error = action.payload;
     },
     logout: (state) => {
       state.token = null;
+      state.authenticated = false;
       localStorage.removeItem("token");
     },
   },
@@ -34,8 +36,8 @@ export default authSlice.reducer;
 export const loginAsync = (username, password) => async (dispatch) => {
   try {
     dispatch(loginStart());
-    const token = await fakeAuthService.login(username, password);
-    dispatch(loginSuccess(token));
+    const result = await fakeAuthService.login(username, password);
+    dispatch(loginSuccess(result));
   } catch (error) {
     dispatch(loginFailure(error.message));
   }

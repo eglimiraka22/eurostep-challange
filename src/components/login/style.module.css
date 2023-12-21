@@ -1,4 +1,4 @@
-.modalOverlay {
+.loginOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -21,17 +21,6 @@
   }
 }
 
-.modalContent {
-  background: var(--background-color);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 8px;
-  animation: fadeUp 0.5s ease-in-out; /* Add fadeUp animation */
-}
-
 @keyframes fadeUp {
   from {
     transform: translateY(250px);
@@ -40,10 +29,14 @@
     transform: translateY(0);
   }
 }
-.characterDetails {
+.loginContainer {
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  border-radius: 10px;
+  height: 50vh;
+  background-color: var(--accent-color);
   display: flex;
   flex-direction: column;
-  padding: 1px;
-  justify-content: flex-start;
-  align-items: start;
+  justify-content: space-evenly;
 }

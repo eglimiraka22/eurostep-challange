@@ -29,10 +29,8 @@ const fakeAuthService = {
     if (username === "user" && password === "password") {
       // Check if a token is stored and not expired
       const storedToken = fakeAuthService.getToken();
-      console.log(storedToken);
       if (storedToken) {
         const decodedToken = fakeAuthService.decodeToken(storedToken);
-        console.log(decodedToken);
         if (decodedToken && decodedToken.exp > Math.floor(Date.now() / 1000)) {
           // Token is still valid, return it
           return storedToken;

@@ -1,7 +1,6 @@
 .charactersContainer {
   width: 100%;
   max-width: 1700px;
-  padding: 5px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 1rem;
@@ -38,4 +37,16 @@
   .charactersContainer {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.paginationContainer {
+  width: fit-content;
+  margin: 3rem auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mainContainerList {
+  min-height: 80vh;
+  padding: 1rem;
 }

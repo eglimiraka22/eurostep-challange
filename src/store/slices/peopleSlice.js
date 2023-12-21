@@ -6,16 +6,20 @@ export const fetchPeople = createAsyncThunk(
   "people/fetchPeople",
   async ({ page, query, speciesFilter, homeworldFilter, filmFilter }) => {
     try {
-
       // The asynchronous logic (e.g., API call) is performed here
       const response = await getPeople(page, query);
-      const filteredResults = filterResults(response.results, speciesFilter, homeworldFilter, filmFilter);
+      const filteredResults = filterResults(
+        response.results,
+        speciesFilter,
+        homeworldFilter,
+        filmFilter,
+      );
 
       return { results: filteredResults, count: response.count };
     } catch (error) {
       throw new Error("Error fetching people data");
     }
-  }
+  },
 );
 
 // Helper function to filter results based on criteria
@@ -27,7 +31,10 @@ const filterResults = (results, speciesFilter, homeworldFilter, filmFilter) => {
     }
 
     // Filter by homeworld
-    if (homeworldFilter && character.homeworld.indexOf(homeworldFilter) === -1) {
+    if (
+      homeworldFilter &&
+      character.homeworld.indexOf(homeworldFilter) === -1
+    ) {
       return false;
     }
 
@@ -38,8 +45,6 @@ const filterResults = (results, speciesFilter, homeworldFilter, filmFilter) => {
         return false;
       }
     }
-
-    // Add more filters as needed
 
     return true;
   });
@@ -73,20 +78,20 @@ const peopleSlice = createSlice({
         state.currentPage = action.meta.arg.page; // Update currentPage here
 
         // Check if there are active filters
-    const { speciesFilter, homeworldFilter, filmFilter } = action.meta.arg;
-    if (speciesFilter || homeworldFilter || filmFilter) {
-      // Update totalCount based on the length of filtered results
-      state.totalCount = action.payload.results.length;
+        const { speciesFilter, homeworldFilter, filmFilter } = action.meta.arg;
+        if (speciesFilter || homeworldFilter || filmFilter) {
+          // Update totalCount based on the length of filtered results
+          state.totalCount = action.payload.results.length;
 
-      // Update totalPages based on the length of filtered results (assuming 10 items per page)
-      state.totalPages = Math.ceil(action.payload.results.length / 10);
-    } else {
-      // Update totalCount based on the original count from the API
-      state.totalCount = action.payload.count;
+          // Update totalPages based on the length of filtered results (assuming 10 items per page)
+          state.totalPages = Math.ceil(action.payload.results.length / 10);
+        } else {
+          // Update totalCount based on the original count from the API
+          state.totalCount = action.payload.count;
 
-      // Update totalPages based on the original count from the API (assuming 10 items per page)
-      state.totalPages = Math.ceil(action.payload.count / 10);
-    }
+          // Update totalPages based on the original count from the API (assuming 10 items per page)
+          state.totalPages = Math.ceil(action.payload.count / 10);
+        }
       })
       .addCase(fetchPeople.rejected, (state, action) => {
         state.loading = false;
