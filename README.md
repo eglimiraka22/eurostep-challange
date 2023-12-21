@@ -6,6 +6,12 @@ username: `user` password: `password`
 
 `REACT_APP_SWAPI_BASE_URL`="https://swapi.dev/api"
 
+### Production Build
+
+In Production Build I have fetched all the filters data looping through next pages from APIs and loading state takes a bit of time
+
+In Local Build I have only called 10 first filters per each category based on swapi api
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
