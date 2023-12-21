@@ -1,3 +1,11 @@
+## Swapi Application for EuroStepChallange
+
+username: `user` password: `password`
+
+### Env variables
+
+`REACT_APP_SWAPI_BASE_URL`="https://swapi.dev/api"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
