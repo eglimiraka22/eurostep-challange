@@ -17,6 +17,7 @@ const Modal = ({ character, onClose }) => {
   const formattedDate = formatDateWithoutMoment(character.created);
 
   const { homeworld, loading, error } = useHomeworld(character.homeworld);
+  const heightInMeters = (character.height / 100).toFixed(2);
 
   let homeworldErrorContent;
 
@@ -40,7 +41,7 @@ const Modal = ({ character, onClose }) => {
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.characterDetails}>
           <h2>{character.name}</h2>
-          <p>Height: {character.height} meters</p>
+          <p>Height: {heightInMeters} m</p>
           <p>Mass: {character.mass} kg</p>
           <p>Date Added: {formattedDate}</p>
           <p>Films: {character.films.length}</p>
