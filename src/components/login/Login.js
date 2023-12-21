@@ -1,7 +1,11 @@
 // components/Login.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAsync, selectAuth } from "../../store/slices/authSlice";
+import {
+  loginAsync,
+  loginFailure,
+  selectAuth,
+} from "../../store/slices/authSlice";
 import styles from "./style.module.css";
 const Login = ({ onClick }) => {
   const dispatch = useDispatch();
@@ -18,8 +22,7 @@ const Login = ({ onClick }) => {
       })
       .catch((error) => {
         // Handle login failure/error
-        throw new Error(error);
-        // We can choose to show an error message in the UI here
+        dispatch(loginFailure(`Invalid Credentials`)); // We can choose to show an error message in the UI here
       });
   };
 

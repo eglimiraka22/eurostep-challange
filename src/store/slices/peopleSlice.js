@@ -77,16 +77,21 @@ const peopleSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.currentPage = action.meta.arg.page; // Update currentPage here
-        state.totalPages = Math.ceil(action.payload.results.length / 10);
 
         // Check if there are active filters
         const { speciesFilter, homeworldFilter, filmFilter } = action.meta.arg;
         if (speciesFilter || homeworldFilter || filmFilter) {
           // Update totalCount based on the length of filtered results
           state.totalCount = action.payload.results.length;
+
+          // Update totalPages based on the length of filtered results (assuming 10 items per page)
+          state.totalPages = Math.ceil(action.payload.results.length / 10);
         } else {
           // Update totalCount based on the original count from the API
           state.totalCount = action.payload.count;
+
+          // Update totalPages based on the original count from the API (assuming 10 items per page)
+          state.totalPages = Math.ceil(action.payload.count / 10);
         }
       })
       .addCase(fetchPeople.rejected, (state, action) => {
