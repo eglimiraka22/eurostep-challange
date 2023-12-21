@@ -16,7 +16,7 @@ import SearchInput from "../UI/SearchInput";
 import SelectFilter from "../UI/SelectFilter";
 import styles from "./style.module.css"; // Import CSS module
 import { logout, selectAuth } from "../../store/slices/authSlice";
-import Login from "../login";
+import Login from "../login/Login";
 
 const Filter = () => {
   const dispatch = useDispatch();

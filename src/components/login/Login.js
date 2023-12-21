@@ -10,14 +10,19 @@ const Login = ({ onClick }) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    dispatch(loginAsync(username, password));
+    dispatch(loginAsync({ username, password }))
+      .unwrap()
+      .then((result) => {
+        // Close the modal on successful login
+        onClick();
+      })
+      .catch((error) => {
+        // Handle login failure/error
+        throw new Error(error);
+        // We can choose to show an error message in the UI here
+      });
   };
-  useEffect(() => {
-    // Check for changes in the authenticated state
-    if (authenticated) {
-      onClick();
-    }
-  }, [authenticated, onClick]);
+
   return (
     <div className={styles.loginOverlay} onClick={onClick}>
       <div
