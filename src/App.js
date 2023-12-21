@@ -1,13 +1,13 @@
 // App.js
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import useGetPeople from "./hooks/useGetPeople";
 // import CharacterModal from './components/CharacterModal';
-import { fetchPeople } from "./store/slices/peopleSlice";
 import CharacterList from "./components/characterList";
 import LoaderSpinner from "./components/loader";
 import styles from "./index.module.css";
 import SearchFilter from "./components/filter";
+import Login from "./components/login/Login";
+import Logout from "./components/login/Logout";
 const App = () => {
   const {
     people,
@@ -56,6 +56,8 @@ const App = () => {
         </>
       )}
       {/* <CharacterModal /> */}
+      <Login />
+      <Logout />
     </div>
   );
 };

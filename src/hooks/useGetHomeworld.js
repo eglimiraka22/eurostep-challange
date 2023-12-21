@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useHomeworld = (homeworldUrl) => {
   const [homeworld, setHomeworld] = useState(null);
@@ -8,13 +9,8 @@ const useHomeworld = (homeworldUrl) => {
   useEffect(() => {
     const fetchHomeworld = async () => {
       try {
-        const response = await fetch(homeworldUrl);
-        if (!response.ok) {
-          throw new Error("Failed to fetch homeworld details");
-        }
-
-        const homeworldData = await response.json();
-        setHomeworld(homeworldData);
+        const response = await axios.get(homeworldUrl);
+        setHomeworld(response.data);
       } catch (error) {
         console.error("Error fetching homeworld details:", error.message);
         setError(error);

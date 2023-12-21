@@ -19,8 +19,15 @@ const Modal = ({ character, onClose }) => {
   const { homeworld, loading, error } = useHomeworld(character.homeworld);
 
   console.log(homeworld);
+
+  let homeworldErrorContent;
+
   if (error) {
-    return null;
+    homeworldErrorContent = (
+      <p className={styles.errorHomeworld}>
+        Error fetching homeworld details: {error.message}
+      </p>
+    );
   }
 
   if (loading) {
@@ -41,12 +48,16 @@ const Modal = ({ character, onClose }) => {
           <p>Films: {character.films.length}</p>
           <p>Birth Year: {character.birth_year}</p>
         </div>
-        <div className={styles.homeworldData}>
-          <h3>Homeworld: {homeworld.name}</h3>
-          <p>Terrain: {homeworld.terrain}</p>
-          <p>Climate: {homeworld.climate}</p>
-          <p>Residents: {homeworld.residents.length}</p>
-        </div>
+        {error ? (
+          homeworldErrorContent
+        ) : (
+          <div className={styles.homeworldData}>
+            <h3>Homeworld: {homeworld.name}</h3>
+            <p>Terrain: {homeworld.terrain}</p>
+            <p>Climate: {homeworld.climate}</p>
+            <p>Residents: {homeworld.residents.length}</p>
+          </div>
+        )}
         {/* Add other character details here */}
         <button onClick={onClose}>Close</button>
       </div>

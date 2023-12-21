@@ -20,6 +20,8 @@ import {
 import SearchInput from "../UI/SearchInput";
 import SelectFilter from "../UI/SelectFilter";
 import styles from "./style.module.css"; // Import CSS module
+import { logout } from "../../store/slices/authSlice";
+import Login from "../login/Login";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,20 @@ const Filter = () => {
   const { speciesFilter, homeworldFilter, filmFilter } = useSelector(
     (state) => state.filters,
   );
+
+  const { token } = useSelector((state) => state.auth);
+  const [openLoginMoal, setOpenLoginMoal] = useState(false);
+  const handleLoginButtonClick = () => {
+    // If there is no token, dispatch an action to open the login modal
+    if (!token) {
+      setOpenLoginMoal(true);
+    } else {
+      setOpenLoginMoal(false);
+
+      // If there is a token, you can perform any other action (e.g., logout)
+      dispatch(logout());
+    }
+  };
 
   const handleSearch = () => {
     dispatch(setCurrentQuery({ searchQuery })); // Dispatch setCurrentQuery action here
@@ -93,6 +109,14 @@ const Filter = () => {
           film={true}
         />
       </div>
+      <button onClick={handleLoginButtonClick}>
+        {token ? "Logout" : "Login"}
+      </button>{" "}
+      {openLoginMoal && (
+        <div className={styles.loginModalContainer}>
+          <Login />
+        </div>
+      )}
     </div>
   );
 };
