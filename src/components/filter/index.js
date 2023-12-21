@@ -1,11 +1,7 @@
 // components/SearchFilter.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchPeople,
-  setCurrentQuery,
-  selectPeople,
-} from "../../store/slices/peopleSlice";
+import { fetchPeople, setCurrentQuery } from "../../store/slices/peopleSlice";
 import {
   getSpeciesOptions,
   getHomeworldOptions,
@@ -15,7 +11,6 @@ import {
   setSpeciesFilter,
   setHomeworldFilter,
   setFilmFilter,
-  clearFilters,
 } from "../../store/slices/filtersSlice";
 import SearchInput from "../UI/SearchInput";
 import SelectFilter from "../UI/SelectFilter";

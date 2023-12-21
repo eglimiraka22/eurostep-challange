@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styles from './SearchInput.module.css'; // Import CSS module
+import React from "react";
+import styles from "./SearchInput.module.css"; // Import CSS module
 
 const SearchInput = ({ value, onChange, placeholder, onSearch }) => {
   return (
